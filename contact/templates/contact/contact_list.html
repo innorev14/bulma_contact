@@ -1,0 +1,38 @@
+{% extends 'bulma/base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<table class="table is-hoverable
+">
+    <thead>
+    <tr>
+        <th>번호</th>
+                <th>의뢰내용</th>
+        <th>이름</th>
+        <th>전화번호</th>
+        <th>이메일</th>
+        <th>유형</th>
+        <th>URL</th>
+        <th>내용</th>
+        <th>등록일</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        {% for contact in object_list %}
+        <td>{{ contact.id }}</td>
+                <td>{{ contact.service }}</td>
+        <td>{{ contact.name }}</td>
+        <td>{{ contact.phone_no}}</td>
+        <td>{{ contact.email }} </td>
+        <td>{{ contact.url_type }}</td>
+        <td>{{ contact.url }}</td>
+        <td>{{ contact.content }}</td>
+        <td>{{ contact.created_at }}</td>
+    </tr>
+    </tbody>
+    {% endfor %}
+</table>
+{% endblock %}
