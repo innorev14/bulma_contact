@@ -13,27 +13,25 @@
             <th>이름</th>
             <th>전화번호</th>
             <th>이메일</th>
-            <th>유형</th>
             <th>URL</th>
             <th>내용</th>
             <th>등록일</th>
         </tr>
         </thead>
         <tbody>
+        {% for contact in object_list %}
         <tr>
-            {% for contact in object_list %}
             <td>{{ contact.id }}</td>
             <td>{{ contact.service }}</td>
-            <td>{{ contact.name }}</td>
+            <td><a href="{% url 'contact:email_detail' contact.id %}">{{ contact.name }}</a></td>
             <td>{{ contact.phone_no}}</td>
             <td>{{ contact.email }} </td>
-            <td>{{ contact.url_type }}</td>
             <td>{{ contact.url }}</td>
-            <td>{{ contact.content }}</td>
+            <td>{{ contact.content|truncatewords:5 }}</td>
             <td>{{ contact.created_at }}</td>
         </tr>
-        </tbody>
         {% endfor %}
+        </tbody>
     </table>
 </div>
 {% endblock %}

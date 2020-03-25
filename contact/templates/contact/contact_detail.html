@@ -4,13 +4,39 @@
 {% endblock %}
 
 {% block content %}
-            <td>{{ contact.id }}</td>
-            <td>{{ contact.service }}</td>
-            <td>{{ contact.name }}</td>
-            <td>{{ contact.phone_no}}</td>
-            <td>{{ contact.email }} </td>
-            <td>{{ contact.url_type }}</td>
-            <td>{{ contact.url }}</td>
-            <td>{{ contact.content }}</td>
-            <td>{{ contact.created_at }}</td>
+<div class="container ">
+    <div class="columns is-centered">
+        <div class="column is-half">
+            <table class="table is-hoverable is-fullwidth">
+                <th>문의번호</th>
+                <td>{{ contact.id }}</td>
+                <tr/>
+                <th>문의날짜</th>
+                <td>{{ contact.created_at }}</td>
+                <tr/>
+                <th>문의유형</th>
+                <td>{{ contact.service }}</td>
+                <tr/>
+                <th>이 름</th>
+                <td>{{ contact.name }}</td>
+                <tr/>
+                <th>전화번호</th>
+                <td>{{ contact.phone_no}}</td>
+                <tr/>
+                <th>Email</th>
+                <td>{{ contact.email }} </td>
+                <tr/>
+                <th>홈페이지</th>
+                <td>{{ contact.url }}</td>
+                <tr/>
+                <th>문의내용</th>
+                <td>{{ contact.content }}</td>
+            </table>
+            <button class="button is-primary" onclick="location.href='{% url 'contact:email_list' %}'">목록</button>
+            <button class="button is-link" onclick="location.href='{% url 'contact:email_delete' contact.id%}'">삭제</button>
+
+        </div>
+    </div>
+</div>
+
 {% endblock %}

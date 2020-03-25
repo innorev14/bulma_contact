@@ -11,16 +11,11 @@ class Contact(models.Model):
         ('크롤링', '크롤링'),
     }
 
-    URL_CHOICES = {
-        ('홈페이지', '홈페이지'),
-        ('벤치마킹', '벤치마킹'),
-    }
 
     name = models.CharField(max_length=10)
     email = models.EmailField()
     phone_no = models.CharField(max_length=13)
     service = models.CharField(max_length=10, choices=SERVICE_CHOICES)
-    url_type = models.CharField(max_length=10, choices=URL_CHOICES, blank=True)
     url = models.URLField(blank=True)
     content = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -30,4 +25,3 @@ class Contact(models.Model):
 
     def get_absolute_url(self):
         return reversed('contact:contact_list')
-
