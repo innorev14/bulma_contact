@@ -6,21 +6,18 @@
 {% block content %}
 <section class="section">
     <div class="container has-text-centered">
-        <div class="column">
+<!--        <div class="column">-->
             <form action="" method="get">
                 <div class="columns">
                     <div class="column is-2">
                         <input class="input is-success" type="text" name="q" value="{{ q }}">
-
                     </div>
                     <div class="column is-1">
-
                         <input class="button is-primary" type="submit" value="검색">
                     </div>
                 </div>
-
-<br/>
             </form>
+
             <div class="box box-shadow-lift">
                 <table class="table is-hoverable">
                     <thead>
@@ -51,6 +48,7 @@
                     </tbody>
                 </table>
             </div>
+
             {% if is_paginated %}
             <nav class="pagination is-centered" role="navigation" aria-label="pagination">
                 {% if page_obj.has_previous %}
@@ -74,6 +72,7 @@
                 {% endif %}
             </nav>
             {% endif %}
+
         </div>
     </div>
 </section>
