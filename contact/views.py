@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -8,9 +9,20 @@ from .forms import ContactForm
 from .models import Contact
 
 
-class ContactListView(ListView):
+class ContactListView(LoginRequiredMixin, ListView):
     model = Contact
+    paginate_by = 10
 
+    def get_queryset(self, *args, **kwargs):
+        qs = Contact.objects.all()
+        query = self.request.GET.get("qs", None)
+        if query is not None:
+            qs = qs.filter(content__icontains=query)
+        return qs
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ContactListView, self).get_context_data(*args, **kwargs)
+        return context
 
 class ContactCreateView(CreateView):
     model = Contact

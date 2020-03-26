@@ -4,34 +4,77 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <table class="table is-hoverable">
-        <thead>
-        <tr>
-            <th>번호</th>
-            <th>의뢰내용</th>
-            <th>이름</th>
-            <th>전화번호</th>
-            <th>이메일</th>
-            <th>URL</th>
-            <th>내용</th>
-            <th>등록일</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for contact in object_list %}
-        <tr>
-            <td>{{ contact.id }}</td>
-            <td>{{ contact.service }}</td>
-            <td><a href="{% url 'contact:email_detail' contact.id %}">{{ contact.name }}</a></td>
-            <td>{{ contact.phone_no}}</td>
-            <td>{{ contact.email }} </td>
-            <td>{{ contact.url }}</td>
-            <td>{{ contact.content|truncatewords:5 }}</td>
-            <td>{{ contact.created_at }}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
+<section class="section">
+    <div class="container has-text-centered">
+        <div class="column">
+            <form action="" method="get">
+                <div class="columns">
+                    <div class="column is-2">
+                        <input class="input is-success" type="text" name="q" value="{{ q }}">
+
+                    </div>
+                    <div class="column is-1">
+
+                        <input class="button is-primary" type="submit" value="검색">
+                    </div>
+                </div>
+
+<br/>
+            </form>
+            <div class="box box-shadow-lift">
+                <table class="table is-hoverable">
+                    <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>문의분야</th>
+                        <th>이름</th>
+                        <th>전화번호</th>
+                        <th>이메일</th>
+                        <th>URL</th>
+                        <th>문의내용</th>
+                        <th>등록일</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for contact in object_list %}
+                    <tr>
+                        <td>{{ contact.id }}</td>
+                        <td>{{ contact.service }}</td>
+                        <td><a href="{% url 'contact:email_detail' contact.id %}">{{ contact.name }}</a></td>
+                        <td>{{ contact.phone_no}}</td>
+                        <td>{{ contact.email }} </td>
+                        <td>{{ contact.url|truncatechars:20 }}</td>
+                        <td>{{ contact.content|truncatechars:50 }}</td>
+                        <td>{{ contact.created_at|date:"y/n/j g:i" }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% if is_paginated %}
+            <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                {% if page_obj.has_previous %}
+                <a class="pagination-previous" href="?page={{ page_obj.previous_page_number }}">이전</a>
+                {% else %}
+                <li class="pagination-previous" disabled><span>이전</span></li>
+                {% endif %}
+                <ul class="pagination-list">
+                    {% for i in paginator.page_range %}
+                    {% if page_obj.number == i %}
+                    <li class="active"><span class="pagination-link is-current">{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                    <a href="?page={{ i }}" class="pagination-link">{{ i }}</a>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+                {% if page_obj.has_next %}
+                <a class="pagination-next" href="?page={{ page_obj.next_page_number }}">다음</a>
+                {% else %}
+                <li class="pagination-next" disabled><span>다음</span></li>
+                {% endif %}
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+</section>
 {% endblock %}
