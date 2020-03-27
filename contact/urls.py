@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . import views
+from . import views, api_views
 
 app_name = 'contact'
 
@@ -11,4 +11,5 @@ urlpatterns = [
     path('delete/<pk>/', views.ContactDeleteView.as_view(), name='email_delete'),
     path('detail/<pk>/', views.ContactDetailView.as_view(), name='email_detail'),
     path('email/', views.email_view, name='email'),
+    path('api/create', api_views.ContactAPIView.as_view())
 ]
