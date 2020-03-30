@@ -25,7 +25,14 @@ schema_view = get_schema_view(
     openapi.Info(
         title="MakeWebnBot Contact API",
         default_version='v1',
-        description="메이크웹앤봇 문의확인 게시판",
+        description=
+        '''
+        메이크웹앤봇 문의확인 게시판 API 문서입니다.
+        
+        현재 List, Create만 API 구현이 되어 있습니다.
+        
+        Create 메뉴를 눌러 응답을 확인 해주세요.
+        ''',
         terms_of_service="https://www.google.com/policies/terms/",
         contact=openapi.Contact(email="tokyo3@netsgo.com"),
         license=openapi.License(name="BSD License"),
