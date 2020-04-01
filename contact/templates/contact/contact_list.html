@@ -7,19 +7,19 @@
 <section class="section">
     <div class="container has-text-centered">
 <!--        <div class="column">-->
-            <form action="" method="get">
-                <div class="columns">
-                    <div class="column is-2">
-                        <input class="input is-success" type="text" name="q" value="{{ q }}">
-                    </div>
-                    <div class="column is-1">
-                        <input class="button is-primary" type="submit" value="검색">
-                    </div>
-                </div>
-            </form>
+<!--            <form action="" method="get">-->
+<!--                <div class="columns">-->
+<!--                    <div class="column is-2">-->
+<!--                        <input class="input is-success" type="text" name="q" value="{{ q }}">-->
+<!--                    </div>-->
+<!--                    <div class="column is-1">-->
+<!--                        <input class="button is-primary" type="submit" value="검색">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </form>-->
 
             <div class="box box-shadow-lift">
-                <table class="table is-hoverable">
+                <table class="table is-hoverable is-fullwidth">
                     <thead>
                     <tr>
                         <th>번호</th>
@@ -41,7 +41,7 @@
                         <td>{{ contact.phone_no}}</td>
                         <td>{{ contact.email }} </td>
                         <td>{{ contact.url|truncatechars:20 }}</td>
-                        <td>{{ contact.content|truncatechars:50 }}</td>
+                        <td style="width: 30%;">{{ contact.content|truncatechars:28 }}</td>
                         <td>{{ contact.created_at|date:"y/n/j g:i" }}</td>
                     </tr>
                     {% endfor %}

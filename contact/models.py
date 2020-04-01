@@ -26,5 +26,5 @@ class Contact(models.Model):
     def get_absolute_url(self):
         return reversed('contact:contact_list')
 
-    class META:
+    class Meta:
         ordering = ['-created_at']
