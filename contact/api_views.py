@@ -1,5 +1,8 @@
+from django.utils.decorators import method_decorator
 from rest_framework import generics
 from .serializers import ContactSerializer
+from django.views.decorators.csrf import csrf_exempt
+
 from .models import Contact
 
 class ContactAPIView(generics.ListCreateAPIView):
@@ -17,3 +20,7 @@ class ContactAPIView(generics.ListCreateAPIView):
     '''
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ContactAPIView, self).dispatch(request, *args, **kwargs)
