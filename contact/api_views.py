@@ -24,3 +24,7 @@ class ContactAPIView(generics.ListCreateAPIView):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super(ContactAPIView, self).dispatch(request, *args, **kwargs)
+
+class ContactDetailAPIView(generics.RetrieveAPIView):
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer
